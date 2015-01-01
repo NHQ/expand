@@ -14,7 +14,7 @@ server.use(api.queryParser())
 server.post('/upload', function(req, res, next){
   var form = new Form.IncomingForm()
   var path = ''
-  form.uploadDir = __dirname + '/data/uploads'
+  form.uploadDir = __dirname + '/tmp'
   form.keepExtensions = true
   form.parse(req, function(err, fields, file){
     console.log(file)
