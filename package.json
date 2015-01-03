@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bulk-require": "^0.2.1",
+    "bulkify": "^1.0.2",
     "concat-stream": "^1.4.7",
     "formidable": "^1.0.16",
     "fstream": "^1.0.3",

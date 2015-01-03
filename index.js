@@ -4,10 +4,9 @@ var util = require('util')
 var api = require('restify')
 var Form = require('formidable')
 var unzip = require('unzip')
-
+var unzipStream = require('./hands/unzipStream')
 //var router = require('./routes')
 var server = api.createServer()
-
 server.use(api.CORS())
 server.use(api.queryParser())
 
@@ -18,28 +17,19 @@ server.post('/upload', function(req, res, next){
   form.keepExtensions = true
   form.parse(req, function(err, fields, file){
     console.log(file)
-    path = file.file.domain.path
+    //path = file.file.domain.path
     res.send(200, util.inspect({field: fields, files: file}))
   })
+  form.onPart = function(part){
+    unzipStream(part)
+  }
   form.on('end', function(){
-    console.log('unzip')
-    var f =fs.createReadStream(path).pipe(unzip.Extract({
-      path: __dirname + 'data' 
-    })).on('error', function(err){
-      console.log(err)
-    }).on('close', function(){
-      console.log('ended')
-    })
-    f.on('error', function(err){console.log(err)})
-    /*
-    zlib.unzip(path, function(err, dir){
-      if(err) console.log(err)
-      else{
-              
-      }
-      console.log(err, util.inspect({dir: dir}))
-    })
-    */
+//    var f = fs.createReadStream(path)
+//    f.on('error', function(err){
+//      console.log(err)
+//    }).on('close', function(){
+//     console.log('ended')
+//    })
   })
 })
 
