@@ -1,7 +1,7 @@
 var html = require('hyperscript')
-var unzip = require('./hands/unzipStream')
 var fileStream = require('filereader-stream')
-var zlib = require('zlib')
+var http = require('hyperquest')
+//var drop = require('drag-and-drop-files')
 
 var form = html('form', {
   action: '/upload'
@@ -20,10 +20,11 @@ form.addEventListener('change', function(e){
   reader.readAsArrayBuffer(file)
   reader.onload  = function(e){
     var buf = Buffer._augment(new Uint8Array(e.target.result))
-    zlib.unzip(buf, function(err, res){
-      console.log(err, res)
-    })
+    var post = http.post('http://localhost:11003/upload')
+    fileStream(file).pipe(post)
   }
-  unzip(fileStream(file))
+  var post = http.post('http://localhost:11003/upload')
+  fileStream(file).pipe(post)
+
 })
 document.body.appendChild(form)

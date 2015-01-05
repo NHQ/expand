@@ -12,9 +12,14 @@
     "bulk-require": "^0.2.1",
     "bulkify": "^1.0.2",
     "concat-stream": "^1.4.7",
+    "ecstatic": "^0.5.8",
+    "filereader-stream": "^0.2.0",
     "formidable": "^1.0.16",
     "fstream": "^1.0.3",
+    "hyperquest": "^1.0.1",
+    "hyperscript": "^1.4.2",
     "restify": "^2.8.4",
+    "router": "^1.0.0-beta.2",
     "unzip": "^0.1.11",
     "unzip2": "^0.2.5"
   }

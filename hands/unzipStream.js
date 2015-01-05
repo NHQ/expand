@@ -1,6 +1,4 @@
-var fs = require('fs')
-var unzip = require('unzip2')
-var fstream = require('fstream')
+var unzip = require('../../jzip')
 var path = require('path')
 var concat = require('concat-stream')
 
@@ -39,6 +37,6 @@ module.exports = function(part){
   })
   uz.on('close', function(){
     console.log(profile)
-    c(null, profile)
+   // c(null, profile)
   })
 }
